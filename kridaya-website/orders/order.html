@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Your Personalized Story</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f0f2f5;
+    }
+    .order-container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .order-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .order-container input,
+    .order-container select,
+    .order-container textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .order-container button {
+      width: 100%;
+      padding: 14px;
+      background-color: #25D366;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .order-container button:hover {
+      background-color: #1ea851;
+    }
+  </style>
+</head>
+<body>
+  <div class="order-container">
+    <h2>Personalized Story Order</h2>
+    <form id="whatsappForm">
+      <input type="text" id="childName" placeholder="Child's Name" required />
+      <input type="number" id="age" placeholder="Age" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="text" id="storyType" placeholder="Story Type (Adventure, Magic, etc.)" required />
+      <select id="plan" required>
+        <option value="">Select Plan</option>
+        <option value="Basic">Basic</option>
+        <option value="Premium">Premium</option>
+        <option value="Ultimate">Ultimate</option>
+      </select>
+      <textarea id="storyIdea" rows="5" placeholder="Tell us your story idea here (characters, message, events...)" required></textarea>
+      <textarea id="address" rows="3" placeholder="Full Address for delivery (House No, Street, City, PIN Code)" required></textarea>
+      <button type="submit">Send on WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("whatsappForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const childName = document.getElementById("childName").value;
+      const age = document.getElementById("age").value;
+      const email = document.getElementById("email").value;
+      const storyType = document.getElementById("storyType").value;
+      const plan = document.getElementById("plan").value;
+      const storyIdea = document.getElementById("storyIdea").value;
+      const address = document.getElementById("address").value;
+
+      const message = 
+`Hi! I want to order a personalized story book. Here are my details:
+
+👶 Child’s Name: ${childName}
+🎂 Age: ${age}
+📧 Email: ${email}
+📖 Story Type: ${storyType}
+💎 Plan: ${plan}
+🏡 Full Address:
+${address}
+
+📝 Story Idea:
+${storyIdea}`;
+
+      const phoneNumber = "91XXXXXXXXXX"; // Replace with your number
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappURL, "_blank");
+    });
+  </script>
+</body>
+</html>
+

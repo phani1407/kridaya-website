@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kridaya - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Kridaya</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="logout.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="order-form-section">
+    <h2>Submit Your Story</h2>
+    <form action="admin.html">
+      <input type="text" placeholder="Child's Name" required>
+      <input type="number" placeholder="Child's Age" required>
+      <input type="text" placeholder="Your Email" required>
+      <textarea placeholder="Your story idea..." rows="5" required></textarea>
+      <select required>
+        <option value="">Select Plan</option>
+        <option value="Basic">Basic - ₹299</option>
+        <option value="Standard">Standard - ₹799</option>
+        <option value="Premium">Premium - ₹1499</option>
+      </select>
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </section>
+</body>
+</html>

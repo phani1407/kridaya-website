@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Orders</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="admin-container">
+    <h2>📦 Order Dashboard</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Child Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Story Type</th>
+          <th>Plan</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable">
+        <!-- Orders will load here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Firebase JS SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2K87g0kJmJJ-KtkzUjNWIXrjOKYcFYwA",
+      authDomain: "kridayabooks.firebaseapp.com",
+      databaseURL: "https://kridayabooks-default-rtdb.firebaseio.com",
+      projectId: "kridayabooks",
+      storageBucket: "kridayabooks.appspot.com",
+      messagingSenderId: "851448662828",
+      appId: "1:851448662828:web:7bf30a938f660f0334ba89"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    const ordersTable = document.getElementById("ordersTable");
+
+    database.ref("orders").on("value", (snapshot) => {
+      ordersTable.innerHTML = "";
+      snapshot.forEach((childSnapshot) => {
+        const order = childSnapshot.val();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${order.childName}</td>
+          <td>${order.age}</td>
+          <td>${order.email}</td>
+          <td>${order.storyType}</td>
+          <td>${order.plan}</td>
+          <td>${order.timestamp}</td>
+        `;
+        ordersTable.appendChild(row);
+      });
+    });
+  </script>
+</body>
+</html>
+
+

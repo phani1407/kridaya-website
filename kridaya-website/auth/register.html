@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register - Kridaya</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <input type="email" id="email" placeholder="Email" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <button type="submit" class="btn">Register</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <!-- Firebase Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2K87g0kJmJJ-KtkzUjNWIXrjOKYcFYwA",
+      authDomain: "kridayabooks.firebaseapp.com",
+      projectId: "kridayabooks",
+      storageBucket: "kridayabooks.appspot.com",
+      messagingSenderId: "851448662828",
+      appId: "1:851448662828:web:7bf30a938f660f0334ba89",
+      measurementId: "G-TBXPY77LDN"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("registerForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Registration successful!");
+        window.location.href = "login.html"; // Redirect to login
+      } catch (error) {
+        alert("Registration failed: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
